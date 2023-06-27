@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> DDoS Attack</title>
+
+    {% load static%}
+
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+
+
+    {% block jquery %}
+
+    <script type="text/javascript" src="{% static "js/jquery.min.js" %}"> </script>
+    <script type="text/javascript" src="{% static "js/popper.min.js" %}"> </script>
+
+    <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+  
+   
+
+    {% endblock %}
+
+    <style>
+        .jumbotron{
+            border-radius: 5.3rem;
+        }
+        .container{
+            border-radius: 1.3rem;
+        }
+        .col-6{
+            border-radius: 1.3rem
+        }
+        #navbar{
+            background-color: black;
+        }
+        
+    </style>
+
+
+
+</head>
+
+
+<body style="background-image: url({% static "images/th9.jpeg" %});background-repeat: no-repeat;background-size: cover;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-grey" id="navbar">
+        <a class="navbar-brand text-white" href="#">DDoS Attack</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-black text-white" href="/admin/">Logout</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+
+            <div class="row" id="rowDiv">
+                
+                    <div class="col-6">
+                      {% for i in  analysisData %}
+                      {{ analysisData }}
+
+                      {% endfor %}
+                    </div>
+                    <div class="col-6 mt-5">
+                        {% if analysisData %}
+                        {% if analysisData == 'Normal Taffic' %}
+
+                        <h1><span class="btn btn-large btn-success">{{ analysisData }}</span></h1>
+
+                        {% else %}
+                        <h1><span class="btn btn-large btn-danger">{{ analysisData }}</span></h1>
+
+
+                        {% endif %}
+                        {% endif %}
+                        
+                    </div>
+    
+               
+                
+            </div>
+                 
+        </div>
+    </div>
+
+    <script>
+        function refresh() {
+         
+      }
+      
+      $(function(){
+        //   refresh();
+        $.ajax({
+              url: "{% url 'analysis' %}",
+              success: function(data) {
+                  $('#rowDiv').html(data);
+              }
+          });
+          setTimeout(refresh, 20000);
+      });
+          </script>
+
+</body>
+
+</html>

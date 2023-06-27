@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DDoS Attack</title>
+    {% load static%}
+
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+
+    {% block jquery %}
+
+    <script type="text/javascript" src="{% static "js/jquery.min.js" %}"> </script>
+    <script type="text/javascript" src="{% static "js/popper.min.js" %}"> </script>
+    <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+
+    {% endblock %}
+
+</head>
+
+<body style="background-image: url({% static "images/2.png" %});background-repeat: no-repeat;background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 center-screen" style="margin-top: 50px">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">
+                            Login
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/login/" method="post">
+                            {% csrf_token %}
+
+                            <input type="hidden" name="q" value="login" />
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" 
+                                name="username" id="username" required
+                                    placeholder="Username" maxlength="10" autocomplete="off" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" id="password"
+                                    placeholder="Password" autocomplete="off" required/>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+                            </div>
+                            <!-- <div class="form-group text-center">
+                                <label>Not Registered..? <a href="/registration/">Click Here</a> </label>
+                            </div> -->
+                             {% if error %}
+                            <div class="alert alert-danger text-center" role="alert">{{ error }}</div>
+                            {% endif %} 
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</body>
+
+</html>

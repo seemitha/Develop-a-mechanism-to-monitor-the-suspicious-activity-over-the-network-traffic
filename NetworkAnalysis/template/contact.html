@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Query Form</title>
+  {% load static%}
+  <style>
+    /* CSS styles for the form */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      background-image: url("https://i.imgur.com/km0OsNy.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .form-container {
+      width: 300px;
+      margin: 100px auto;
+      background-color: #111;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      color: #fff;
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-top: 0;
+    }
+    form {
+      display: grid;
+      gap: 10px;
+    }
+    label {
+      color: #555;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="submit"],
+    input[type="button"] {
+      padding: 10px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 16px;
+      background-color: #222;
+      color: #fff;
+    }
+    input[type="text"]:focus {
+      border-bottom: 1px solid #007bff;
+    }
+    input[type="submit"],
+    input[type="button"] {
+        margin-top: 10px;
+        border-radius:15px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover,
+    input[type="button"]:hover {
+      background-color: #0056b3;
+    }
+    .back-button {
+      background-color: #ccc;
+    }
+    .back-button:hover {
+      background-color: #999;
+    }
+    @keyframes blink {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    .cursor {
+      display: inline-block;
+      animation: blink 1s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Query Form <span class="cursor">_</span></h1>
+    <form method="post" action="/index/">
+        {% csrf_token %}
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="query">Query:</label> <!-- Updated label for the text input -->
+      <input type="text" id="query" name="query" required> <!-- Replaced age input with text input -->
+      <input type="submit" value="Submit" >
+      <input type="button" value="Back" onclick="history.back();"> 
+    </form>
+  </div>
+</body>
+</html>

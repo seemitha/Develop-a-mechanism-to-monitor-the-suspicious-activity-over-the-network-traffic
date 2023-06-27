@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .btn1{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-left: 20px;
+    
+                
+                
+            }
+           
+            .container{
+                background-color: white;
+                width: fit-content;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #rowDiv{
+                background-color: white;
+            }
+            .jumbotron{
+                background-color: grey;
+                border-radius: 0px;
+            }
+    
+    </style>
+</head>
+    <body>
+
+        <div class="col-6 mt-5" id="head">
+            <div class="btn1">
+                
+            {% if analysisData %}
+            {% if analysisData == 'Normal Taffic' %}
+            <div>
+            <h1 id="head"><span class="btn btn-large btn-success">{{ analysisData }}</span></h1>
+        
+            {% else %}
+           
+            <h1><span class="btn btn-large btn-danger">{{ analysisData }}</span></h1>
+            <div>
+
+            {% endif %}
+            {% endif %}
+        </div>
+        </div>
+            
+
+    <div class="container">
+        <br>
+        <!-- <div class="jumbotron"> -->
+
+            <div class="row" id="rowDiv">
+                
+                    <div class="col-6">
+                     
+                      {{ row|safe}}
+
+                   
+                    </div>
+
+
+                     <div class="col-6 mt-5">
+                        <div class="btn1">
+                        <!-- {% if analysisData %}
+                        {% if analysisData == 'Normal Taffic' %}
+
+                        <h1 id="head"><span class="btn btn-large btn-success">{{ analysisData }}</span></h1>
+
+                        {% else %}
+                        <h1><span class="btn btn-large btn-danger">{{ analysisData }}</span></h1>
+
+
+                        {% endif %}
+                        {% endif %} -->
+                    </div>
+                        
+                    </div> 
+
+    
+               
+                
+            </div>
+            
+        <!-- </div> -->
+    </div>
+
+    <script>
+        function refresh() {
+         
+      }
+      
+      $(function(){
+        //   refresh();
+        $.ajax({
+              url: "{% url 'analysis' %}",
+              success: function(data) {
+                  $('#rowDiv').html(data);
+              }
+          });
+          setTimeout(refresh, 20000);
+      });
+          </script>
+
+</body>
+
+</html>
